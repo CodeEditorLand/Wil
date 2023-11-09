@@ -28,47 +28,44 @@
 //   - In the dll.cpp (or equivalent) for the module containing your class, add:
 //         CoCreatableClassWrlCreatorMapInclude(className)
 //
-namespace wil
-{
-    namespace details
-    {
-        template <typename TCppWinRTClass>
-        class module_count_wrapper : public TCppWinRTClass
-        {
-        public:
-            module_count_wrapper()
-            {
-                if (auto modulePtr = ::Microsoft::WRL::GetModuleBase())
-                {
-                    modulePtr->IncrementObjectCount();
-                }
-            }
+namespace wil {
+namespace details {
+template <typename TCppWinRTClass>
+class module_count_wrapper : public TCppWinRTClass {
+  public:
+	module_count_wrapper() {
+		if (auto modulePtr = ::Microsoft::WRL::GetModuleBase()) {
+			modulePtr->IncrementObjectCount();
+		}
+	}
 
-            virtual ~module_count_wrapper()
-            {
-                if (auto modulePtr = ::Microsoft::WRL::GetModuleBase())
-                {
-                    modulePtr->DecrementObjectCount();
-                }
-            }
-        };
-    }
+	virtual ~module_count_wrapper() {
+		if (auto modulePtr = ::Microsoft::WRL::GetModuleBase()) {
+			modulePtr->DecrementObjectCount();
+		}
+	}
+};
+} // namespace details
 
-    template <typename TCppWinRTClass>
-    class wrl_factory_for_winrt_com_class : public ::Microsoft::WRL::ClassFactory<>
-    {
-    public:
-        IFACEMETHODIMP CreateInstance(_In_opt_ ::IUnknown* unknownOuter, REFIID riid, _COM_Outptr_ void **object) noexcept try
-        {
-            *object = nullptr;
-            RETURN_HR_IF(CLASS_E_NOAGGREGATION, unknownOuter != nullptr);
+template <typename TCppWinRTClass>
+class wrl_factory_for_winrt_com_class
+	: public ::Microsoft::WRL::ClassFactory<> {
+  public:
+	IFACEMETHODIMP CreateInstance(_In_opt_ ::IUnknown *unknownOuter,
+								  REFIID riid,
+								  _COM_Outptr_ void **object) noexcept try {
+		*object = nullptr;
+		RETURN_HR_IF(CLASS_E_NOAGGREGATION, unknownOuter != nullptr);
 
-            return winrt::make<details::module_count_wrapper<TCppWinRTClass>>().as(riid, object);
-        }
-        CATCH_RETURN()
-    };
-}
+		return winrt::make<details::module_count_wrapper<TCppWinRTClass>>().as(
+			riid, object);
+	}
+	CATCH_RETURN()
+};
+} // namespace wil
 
-#define CoCreatableCppWinRtClass(className) CoCreatableClassWithFactory(className, ::wil::wrl_factory_for_winrt_com_class<className>)
+#define CoCreatableCppWinRtClass(className)                                    \
+	CoCreatableClassWithFactory(                                               \
+		className, ::wil::wrl_factory_for_winrt_com_class<className>)
 
 #endif // __WIL_CPPWINRT_WRL_INCLUDED
