@@ -133,14 +133,14 @@ struct __WI_LIBCPP_TEMPLATE_VIS integral_constant {
 	typedef _Tp value_type;
 	typedef integral_constant type;
 	__WI_LIBCPP_NODISCARD_ATTRIBUTE
-		__WI_LIBCPP_INLINE_VISIBILITY __WI_LIBCPP_CONSTEXPR
-		operator value_type() const WI_NOEXCEPT {
+	__WI_LIBCPP_INLINE_VISIBILITY __WI_LIBCPP_CONSTEXPR
+	operator value_type() const WI_NOEXCEPT {
 		return value;
 	}
 #if __WI_LIBCPP_STD_VER > 11
 	__WI_LIBCPP_NODISCARD_ATTRIBUTE
-		__WI_LIBCPP_INLINE_VISIBILITY constexpr value_type
-		operator()() const WI_NOEXCEPT {
+	__WI_LIBCPP_INLINE_VISIBILITY constexpr value_type
+	operator()() const WI_NOEXCEPT {
 		return value;
 	}
 #endif
@@ -2127,8 +2127,8 @@ template <class _Tp>
 #endif
 struct __WI_LIBCPP_TEMPLATE_VIS less : binary_function<_Tp, _Tp, bool> {
 	__WI_LIBCPP_NODISCARD_ATTRIBUTE
-		__WI_LIBCPP_CONSTEXPR_AFTER_CXX11 __WI_LIBCPP_INLINE_VISIBILITY bool
-		operator()(const _Tp &__x, const _Tp &__y) const {
+	__WI_LIBCPP_CONSTEXPR_AFTER_CXX11 __WI_LIBCPP_INLINE_VISIBILITY bool
+	operator()(const _Tp &__x, const _Tp &__y) const {
 		return __x < __y;
 	}
 };

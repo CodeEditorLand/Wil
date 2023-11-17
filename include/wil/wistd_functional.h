@@ -297,8 +297,8 @@ __WI_ALIGNAS(typename aligned_storage<__function::__buffer_size>::type)
 
 	// function capacity:
 	__WI_LIBCPP_NODISCARD_ATTRIBUTE
-		__WI_LIBCPP_INLINE_VISIBILITY __WI_LIBCPP_EXPLICIT
-		operator bool() const WI_NOEXCEPT {
+	__WI_LIBCPP_INLINE_VISIBILITY __WI_LIBCPP_EXPLICIT
+	operator bool() const WI_NOEXCEPT {
 		return __f_;
 	}
 

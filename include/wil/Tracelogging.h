@@ -624,7 +624,7 @@ template <typename TraceLoggingType, UINT64 keyword = 0,
 			  _TlgReflectorTag_Param0IsProviderType> // helps TlgReflector
 													 // understand that this is
 													 // a wrapper type
-													 class BasicActivity
+class BasicActivity
 	: public _TlgActivityBase<
 		  BasicActivity<TraceLoggingType, keyword, level, TlgReflectorTag>,
 		  keyword, level> {
@@ -690,7 +690,7 @@ template <typename TraceLoggingType, UINT64 keyword = 0,
 			  _TlgReflectorTag_Param0IsProviderType> // helps TlgReflector
 													 // understand that this is
 													 // a wrapper type
-													 class BasicThreadActivity
+class BasicThreadActivity
 	: public _TlgActivityBase<BasicThreadActivity<TraceLoggingType, keyword,
 												  level, TlgReflectorTag>,
 							  keyword, level> {
@@ -2509,7 +2509,7 @@ class ActivityBase : public details::IFailureCallback {
   protected:                                                                   \
 	static TraceLoggingClassName *Instance() WI_NOEXCEPT {                     \
 		static wil::details::static_lazy<TraceLoggingClassName> wrapper;       \
-		return wrapper.get([]() {  wrapper.cleanup(); });                       \
+		return wrapper.get([]() { wrapper.cleanup(); });                       \
 	}                                                                          \
 	friend class wil::details::static_lazy<TraceLoggingClassName>;
 

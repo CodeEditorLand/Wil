@@ -155,7 +155,7 @@ template <typename pointer_t,  // The handle type
 		  typename pointer_invalid_t =
 			  wistd::nullptr_t> // nullptr_t if the invalid handle value is
 								// compatible with nullptr, otherwise pointer
-								struct resource_policy
+struct resource_policy
 	: close_invoker<close_fn_t, close_fn, pointer_storage_t> {
 	typedef pointer_storage_t pointer_storage;
 	typedef pointer_t pointer;
@@ -466,11 +466,10 @@ template <
 	typename pointer_invalid =
 		wistd::nullptr_t> // nullptr_t if the invalid handle value is compatible
 						  // with nullptr, otherwise pointer
-						  using unique_any = unique_any_t<
-							  details::unique_storage<details::resource_policy<
-								  pointer, close_fn_t, close_fn, pointer_access,
-								  pointer_storage, invalid_t, invalid,
-								  pointer_invalid>>>;
+using unique_any =
+	unique_any_t<details::unique_storage<details::resource_policy<
+		pointer, close_fn_t, close_fn, pointer_access, pointer_storage,
+		invalid_t, invalid, pointer_invalid>>>;
 
 /// @cond
 namespace details {

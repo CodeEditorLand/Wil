@@ -109,8 +109,7 @@ struct __compressed_pair_elem {
 		return __value_;
 	}
 	__WI_LIBCPP_NODISCARD_ATTRIBUTE
-		__WI_LIBCPP_INLINE_VISIBILITY const_reference
-		__get() const WI_NOEXCEPT {
+	__WI_LIBCPP_INLINE_VISIBILITY const_reference __get() const WI_NOEXCEPT {
 		return __value_;
 	}
 
@@ -148,8 +147,7 @@ struct __compressed_pair_elem<_Tp, _Idx, true> : private _Tp {
 		return *this;
 	}
 	__WI_LIBCPP_NODISCARD_ATTRIBUTE
-		__WI_LIBCPP_INLINE_VISIBILITY const_reference
-		__get() const WI_NOEXCEPT {
+	__WI_LIBCPP_INLINE_VISIBILITY const_reference __get() const WI_NOEXCEPT {
 		return *this;
 	}
 };
@@ -558,8 +556,8 @@ class __WI_LIBCPP_TEMPLATE_VIS unique_ptr {
 		return __ptr_.second();
 	}
 	__WI_LIBCPP_NODISCARD_ATTRIBUTE
-		__WI_LIBCPP_INLINE_VISIBILITY __WI_LIBCPP_EXPLICIT
-		operator bool() const WI_NOEXCEPT {
+	__WI_LIBCPP_INLINE_VISIBILITY __WI_LIBCPP_EXPLICIT
+	operator bool() const WI_NOEXCEPT {
 		return __ptr_.first() != nullptr;
 	}
 
@@ -826,8 +824,8 @@ class __WI_LIBCPP_TEMPLATE_VIS unique_ptr<_Tp[], _Dp> {
 		return __ptr_.second();
 	}
 	__WI_LIBCPP_NODISCARD_ATTRIBUTE
-		__WI_LIBCPP_INLINE_VISIBILITY __WI_LIBCPP_EXPLICIT
-		operator bool() const WI_NOEXCEPT {
+	__WI_LIBCPP_INLINE_VISIBILITY __WI_LIBCPP_EXPLICIT
+	operator bool() const WI_NOEXCEPT {
 		return __ptr_.first() != nullptr;
 	}
 
