@@ -3183,8 +3183,8 @@ WI_HEADER_INITITALIZATION_FUNCTION(
 #endif
 } // namespace details
 /// @endcond
-#else  // !WINAPI_PARTITION_DESKTOP, !WINAPI_PARTITION_SYSTEM, explicitly assume
-	   // these modules can direct link
+#else // !WINAPI_PARTITION_DESKTOP, !WINAPI_PARTITION_SYSTEM, explicitly assume
+	  // these modules can direct link
 namespace details {
 WI_HEADER_INITITALIZATION_FUNCTION(WilInitialize_ResultMacros_AppOnly, [] {
 	g_pfnRaiseFailFastException = ::RaiseFailFastException;
